@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace ElmudoDev\FilamentCustomAttributeFileUpload\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class FilamentCustomAttributeFileUploadCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'filament-custom-attribute-file-upload';
 
     public $description = 'My command';
 
