@@ -1,29 +1,29 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "elmudo-dev/filament-custom-attribute-file-upload",
+    "description": "Component to add a custom name to image attributes for captions",
     "keywords": [
-        ":vendor_name",
+        "Elmudo-Dev",
         "laravel",
-        ":package_slug"
+        "filament-custom-attribute-file-upload"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/elmudo-dev/filament-custom-attribute-file-upload",
     "support": {
-        "issues": "https://github.com/:vendor_slug/:package_slug/issues",
-        "source": "https://github.com/:vendor_slug/:package_slug"
+        "issues": "https://github.com/elmudo-dev/filament-custom-attribute-file-upload/issues",
+        "source": "https://github.com/elmudo-dev/filament-custom-attribute-file-upload"
     },
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Hernan Soto",
+            "email": "elmudometal@gmail.com",
             "role": "Developer"
         }
     ],
     "require": {
         "php": "^8.1",
-        "filament/filament": "^3.0",
+        "filament/filament": "^3.2",
         "filament/forms": "^3.0",
-        "filament/tables": "^3.0",
+        "filament/spatie-laravel-media-library-plugin": "3.2",
         "spatie/laravel-package-tools": "^1.15.0"
     },
     "require-dev": {
@@ -41,13 +41,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src/",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
+            "ElmudoDev\\FilamentCustomAttributeFileUpload\\": "src/",
+            "ElmudoDev\\FilamentCustomAttributeFileUpload\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests/"
+            "ElmudoDev\\FilamentCustomAttributeFileUpload\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -67,10 +67,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "ElmudoDev\\FilamentCustomAttributeFileUpload\\FilamentCustomAttributeFileUploadServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "FilamentCustomAttributeFileUpload": "ElmudoDev\\FilamentCustomAttributeFileUpload\\Facades\\FilamentCustomAttributeFileUpload"
             }
         }
     },
