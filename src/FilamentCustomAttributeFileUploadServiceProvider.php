@@ -2,6 +2,8 @@
 
 namespace ElmudoDev\FilamentCustomAttributeFileUpload;
 
+use ElmudoDev\FilamentCustomAttributeFileUpload\Commands\FilamentCustomAttributeFileUploadCommand;
+use ElmudoDev\FilamentCustomAttributeFileUpload\Testing\TestsFilamentCustomAttributeFileUpload;
 use Filament\Support\Assets\AlpineComponent;
 use Filament\Support\Assets\Asset;
 use Filament\Support\Assets\Css;
@@ -13,8 +15,6 @@ use Livewire\Features\SupportTesting\Testable;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use ElmudoDev\FilamentCustomAttributeFileUpload\Commands\FilamentCustomAttributeFileUploadCommand;
-use ElmudoDev\FilamentCustomAttributeFileUpload\Testing\TestsFilamentCustomAttributeFileUpload;
 
 class FilamentCustomAttributeFileUploadServiceProvider extends PackageServiceProvider
 {
@@ -100,7 +100,7 @@ class FilamentCustomAttributeFileUploadServiceProvider extends PackageServicePro
     protected function getAssets(): array
     {
         return [
-            // AlpineComponent::make('filament-custom-attribute-file-upload', __DIR__ . '/../resources/dist/components/filament-custom-attribute-file-upload.js'),
+            AlpineComponent::make('filament-custom-attribute-file-upload', __DIR__ . '/../resources/dist/filament-custom-attribute-file-upload.js'),
             Css::make('filament-custom-attribute-file-upload-styles', __DIR__ . '/../resources/dist/filament-custom-attribute-file-upload.css'),
             Js::make('filament-custom-attribute-file-upload-scripts', __DIR__ . '/../resources/dist/filament-custom-attribute-file-upload.js'),
         ];
