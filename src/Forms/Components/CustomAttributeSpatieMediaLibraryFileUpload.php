@@ -16,7 +16,7 @@ use Throwable;
 
 class CustomAttributeSpatieMediaLibraryFileUpload extends SpatieMediaLibraryFileUpload
 {
-    protected string $view = 'filament-imagen-file::custom-attribute-file-upload';
+    protected string $view = 'filament-custom-attribute-file-upload::custom-attribute-file-upload';
 
     protected function setUp(): void
     {
