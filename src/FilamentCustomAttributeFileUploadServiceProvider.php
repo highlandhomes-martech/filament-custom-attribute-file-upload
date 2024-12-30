@@ -1,7 +1,9 @@
 <?php
 
-namespace VendorName\Skeleton;
+namespace ElmudoDev\FilamentCustomAttributeFileUpload;
 
+use ElmudoDev\FilamentCustomAttributeFileUpload\Commands\FilamentCustomAttributeFileUploadCommand;
+use ElmudoDev\FilamentCustomAttributeFileUpload\Testing\TestsFilamentCustomAttributeFileUpload;
 use Filament\Support\Assets\AlpineComponent;
 use Filament\Support\Assets\Asset;
 use Filament\Support\Assets\Css;
@@ -13,14 +15,12 @@ use Livewire\Features\SupportTesting\Testable;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use VendorName\Skeleton\Commands\SkeletonCommand;
-use VendorName\Skeleton\Testing\TestsSkeleton;
 
-class SkeletonServiceProvider extends PackageServiceProvider
+class FilamentCustomAttributeFileUploadServiceProvider extends PackageServiceProvider
 {
-    public static string $name = 'skeleton';
+    public static string $name = 'filament-custom-attribute-file-upload';
 
-    public static string $viewNamespace = 'skeleton';
+    public static string $viewNamespace = 'filament-custom-attribute-file-upload';
 
     public function configurePackage(Package $package): void
     {
@@ -36,7 +36,7 @@ class SkeletonServiceProvider extends PackageServiceProvider
                     ->publishConfigFile()
                     ->publishMigrations()
                     ->askToRunMigrations()
-                    ->askToStarRepoOnGitHub(':vendor_slug/:package_slug');
+                    ->askToStarRepoOnGitHub('elmudo-dev/filament-custom-attribute-file-upload');
             });
 
         $configFileName = $package->shortName();
@@ -80,18 +80,18 @@ class SkeletonServiceProvider extends PackageServiceProvider
         if (app()->runningInConsole()) {
             foreach (app(Filesystem::class)->files(__DIR__ . '/../stubs/') as $file) {
                 $this->publishes([
-                    $file->getRealPath() => base_path("stubs/skeleton/{$file->getFilename()}"),
-                ], 'skeleton-stubs');
+                    $file->getRealPath() => base_path("stubs/filament-custom-attribute-file-upload/{$file->getFilename()}"),
+                ], 'filament-custom-attribute-file-upload-stubs');
             }
         }
 
         // Testing
-        Testable::mixin(new TestsSkeleton);
+        Testable::mixin(new TestsFilamentCustomAttributeFileUpload);
     }
 
     protected function getAssetPackageName(): ?string
     {
-        return ':vendor_slug/:package_slug';
+        return 'elmudo-dev/filament-custom-attribute-file-upload';
     }
 
     /**
@@ -100,9 +100,9 @@ class SkeletonServiceProvider extends PackageServiceProvider
     protected function getAssets(): array
     {
         return [
-            // AlpineComponent::make('skeleton', __DIR__ . '/../resources/dist/components/skeleton.js'),
-            Css::make('skeleton-styles', __DIR__ . '/../resources/dist/skeleton.css'),
-            Js::make('skeleton-scripts', __DIR__ . '/../resources/dist/skeleton.js'),
+            AlpineComponent::make('filament-custom-attribute-file-upload', __DIR__ . '/../resources/dist/filament-custom-attribute-file-upload.js'),
+            Css::make('filament-custom-attribute-file-upload-styles', __DIR__ . '/../resources/dist/filament-custom-attribute-file-upload.css'),
+            Js::make('filament-custom-attribute-file-upload-scripts', __DIR__ . '/../resources/dist/filament-custom-attribute-file-upload.js'),
         ];
     }
 
@@ -112,7 +112,7 @@ class SkeletonServiceProvider extends PackageServiceProvider
     protected function getCommands(): array
     {
         return [
-            SkeletonCommand::class,
+            FilamentCustomAttributeFileUploadCommand::class,
         ];
     }
 
@@ -146,7 +146,7 @@ class SkeletonServiceProvider extends PackageServiceProvider
     protected function getMigrations(): array
     {
         return [
-            'create_skeleton_table',
+            'create_filament-custom-attribute-file-upload_table',
         ];
     }
 }
