@@ -7,7 +7,10 @@
 
 
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+This component adds a custom field to save a caption attribute to the images. It has two versions: one to work with the native FileUpload component and another to work with the SpatieMediaLibraryFileUpload component.
+
+![image](https://github.com/user-attachments/assets/06e0729f-dfd9-4861-9919-75f1c07068ec)
+
 
 ## Installation
 
@@ -17,37 +20,30 @@ You can install the package via composer:
 composer require elmudo-dev/filament-custom-attribute-file-upload
 ```
 
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="filament-custom-attribute-file-upload-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="filament-custom-attribute-file-upload-config"
-```
-
 Optionally, you can publish the views using
 
 ```bash
 php artisan vendor:publish --tag="filament-custom-attribute-file-upload-views"
 ```
 
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
 ## Usage
-
+### Using with Spatie media Library
 ```php
-$filamentCustomAttributeFileUpload = new ElmudoDev\FilamentCustomAttributeFileUpload();
-echo $filamentCustomAttributeFileUpload->echoPhrase('Hello, ElmudoDev!');
+CustomAttributeSpatieMediaLibraryFileUpload::make('gallery')
+    ->collection('gallery')
+    ->conversion('thumb')
+    ->downloadable()
+    ->panelLayout('grid')
+    ->multiple()
+    ->reorderable(),
+```
+### Using with File Upload
+```php
+CustomAttributeFileUpload::make('gallery')                 
+    ->downloadable()
+    ->panelLayout('grid')
+    ->multiple()
+    ->reorderable(),
 ```
 
 ## Testing
