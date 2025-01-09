@@ -9,6 +9,9 @@
 
 This component adds a custom field to save a caption attribute to the images. It has two versions: one to work with the native FileUpload component and another to work with the SpatieMediaLibraryFileUpload component.
 
+![image](https://github.com/user-attachments/assets/06e0729f-dfd9-4861-9919-75f1c07068ec)
+
+
 ## Installation
 
 You can install the package via composer:
