@@ -52,6 +52,11 @@ class CustomAttributeFileUpload extends FileUpload
             foreach ($state ?? [] as $fileKey => $file) {
                 $captions[$fileKey] = ['caption' => $file['caption']];
             }
+
+            if (array_key_exists('captions', $component->getLivewire()->data) && count($component->getLivewire()->data['captions'])) {
+                $captions = array_merge($captions, $component->getLivewire()->data['captions']);
+            }
+            
             $component->getLivewire()->data['captions'] = $captions;
         });
 

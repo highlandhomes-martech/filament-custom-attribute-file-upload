@@ -46,6 +46,10 @@ class CustomAttributeSpatieMediaLibraryFileUpload extends SpatieMediaLibraryFile
                 $captions[$item['uuid']] = ['caption' => $item['name']];
             }
 
+            if (array_key_exists('captions', $component->getLivewire()->data) && count($component->getLivewire()->data['captions'])) {
+                $captions = array_merge($captions, $component->getLivewire()->data['captions']);
+            }
+
             $component->state($uuids);
             $component->getLivewire()->data['captions'] = $captions;
         });
