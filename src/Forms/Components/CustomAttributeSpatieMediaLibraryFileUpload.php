@@ -107,6 +107,7 @@ class CustomAttributeSpatieMediaLibraryFileUpload extends SpatieMediaLibraryFile
         $this->saveRelationshipsUsing(static function (CustomAttributeSpatieMediaLibraryFileUpload $component) {
             $component->deleteAbandonedFiles();
             $component->saveUploadedFiles();
+            $component->saveExistingFileCaptions();
         });
 
         $this->saveUploadedFileUsing(static function (CustomAttributeSpatieMediaLibraryFileUpload $component, TemporaryUploadedFile $file, ?Model $record): ?string {
@@ -177,6 +178,31 @@ class CustomAttributeSpatieMediaLibraryFileUpload extends SpatieMediaLibraryFile
 
             return $state;
         });
+    }
+
+    public function saveExistingFileCaptions(): void
+    {
+        $record = $this->getRecord();
+        $captions = $this->getLivewire()->data['captions'] ?? [];
+        $existingUuids = array_filter($this->getState(), fn ($item) => is_string($item));
+
+        if (! $record || ! method_exists($record, 'getMedia') || empty($captions) || empty($existingUuids)) {
+            return;
+        }
+
+        $mediaClass = method_exists($record, 'getMediaModel') ? $record->getMediaModel() : null;
+        $mediaClass ??= config('media-library.media_model', Media::class);
+
+        $mediaClass::query()->whereIn('uuid', $existingUuids)->get()
+            ->each(function (Media $media) use ($captions): void {
+                $uuid = $media->getAttributeValue('uuid');
+                $newCaption = $captions[$uuid]['caption'] ?? null;
+
+                if ($newCaption !== null && $media->getAttributeValue('name') !== $newCaption) {
+                    $media->name = $newCaption;
+                    $media->save();
+                }
+            });
     }
 
     public function mediaName(string | Closure | null $name): static
