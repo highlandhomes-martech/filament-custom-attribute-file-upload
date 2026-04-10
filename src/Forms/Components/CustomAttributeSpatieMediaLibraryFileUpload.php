@@ -193,6 +193,10 @@ class CustomAttributeSpatieMediaLibraryFileUpload extends SpatieMediaLibraryFile
 
                 if ($newCaption !== null && $media->getAttributeValue('name') !== $newCaption) {
                     $media->name = $newCaption;
+                    // Update description in custom_properties JSON field
+                    $customProperties = $media->getAttributeValue('custom_properties') ?? [];
+                    $customProperties['description'] = $newCaption;
+                    $media->custom_properties = $customProperties;
                     $media->save();
                 }
             });
