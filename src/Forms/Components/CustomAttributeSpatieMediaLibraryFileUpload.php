@@ -156,19 +156,12 @@ class CustomAttributeSpatieMediaLibraryFileUpload extends SpatieMediaLibraryFile
         });
 
         $this->reorderUploadedFilesUsing(static function (CustomAttributeSpatieMediaLibraryFileUpload $component, ?Model $record, array $state): array {
-
-            $data = $component->getLivewire()->data;
             $uuids = array_filter(array_values($state));
 
             $mediaClass = ($record && method_exists($record, 'getMediaModel')) ? $record->getMediaModel() : null;
             $mediaClass ??= config('media-library.media_model', Media::class);
 
             $medias = $mediaClass::query()->whereIn('uuid', $uuids)->get();
-
-            foreach ($medias as $media) {
-                $media->name = $data['captions'][$media->getAttributeValue('uuid')]['caption'] ?? '';
-                $media->save();
-            }
 
             $mappedIds = $medias->pluck('id', 'uuid')->toArray();
             $mediaClass::setNewOrder([
